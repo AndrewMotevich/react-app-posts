@@ -3,6 +3,8 @@ import React, { useState, useMemo } from "react";
 import PostList from "./components/PostList";
 import PostForm from "./components/PostForm";
 import PostFilter from "./components/PostFilter";
+import { MyModal } from "./components/UI/modals/MyModal";
+import MyButton from "./components/UI/buttons/MyButton";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -10,11 +12,12 @@ function App() {
     { id: 2, title: "Python", body: "1. Python" },
     { id: 3, title: "C++", body: "2. Description" },
   ]);
-
   const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [modal, setModal] = useState(false);
 
   function createPost(newPost) {
     setPosts([...posts, newPost]);
+    setModal(false);
   }
 
   function deletePost(id) {
@@ -45,27 +48,19 @@ function App() {
 
   return (
     <div className="App">
-      <PostForm create={createPost} />
+      <MyButton style={{ marginTop: "20px" }} onClick={() => setModal(true)}>
+        Add post
+      </MyButton>
+      <MyModal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} />
+      </MyModal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {sortedAndSearchPosts.length !== 0 ? (
-        <PostList
-          posts={sortedAndSearchPosts}
-          title={"List of Posts"}
-          deletePost={deletePost}
-        />
-      ) : (
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "20px",
-            paddingTop: "20px",
-            color: "red",
-          }}
-        >
-          Posts are not found
-        </h1>
-      )}
+      <PostList
+        posts={sortedAndSearchPosts}
+        title={"List of Posts"}
+        deletePost={deletePost}
+      />
     </div>
   );
 }
