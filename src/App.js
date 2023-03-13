@@ -9,15 +9,23 @@ import { usePosts } from "./hooks/usePosts";
 import PostService from "./API/PostService";
 import { Loader } from "./components/UI/loaders/Loader";
 import { useFetching } from "./hooks/useFetching";
+import usePagination from "./hooks/usePagination";
+import getPageCount from "./components/utils/pages.js";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [modal, setModal] = useState(false);
   const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query);
+
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalPages, pagesArray, setTotalPages] = usePagination();
   const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-    const posts = await PostService.getAll();
-    setPosts(posts);
+    const response = await PostService.getAll(limit, page);
+    setPosts(response.data);
+    const totalCountHeader = response.headers["x-total-count"];
+    setTotalPages(getPageCount(totalCountHeader, limit));
   });
 
   useEffect(() => {
@@ -38,6 +46,11 @@ function App() {
     });
     setPosts(updatedPosts);
   }
+
+  const changePage = (page) => {
+    setPage(page);
+    fetchPosts();
+  };
 
   return (
     <div className="App">
@@ -67,6 +80,21 @@ function App() {
           deletePost={deletePost}
         />
       )}
+      <div style={{ marginTop: "20px" }}>
+        {pagesArray.map((num) => {
+          return (
+            <span
+              onClick={() => {
+                changePage(num);
+              }}
+              className={page === num ? "page pageCurrent" : "page"}
+              key={num}
+            >
+              {num}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -36,3 +36,14 @@
   transform: translateX(-350px);
   transition: all 500ms ease-in;
 }
+.page {
+  padding: 5px 15px;
+  color: teal;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid teal;
+  cursor: pointer;
+}
+.pageCurrent {
+  border: 2px solid blueviolet;
+}
