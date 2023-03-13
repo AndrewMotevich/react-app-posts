@@ -7,7 +7,6 @@ export default function usePagination() {
     for (let i = 0; i < totalPages; i += 1) {
       pagesArray.push(i + 1);
     }
-    console.log("newArray");
     return pagesArray;
   }, [totalPages]);
   return [totalPages, pagesArray, setTotalPages];

@@ -48,3 +48,7 @@
 .navbar__links {
   margin-left: auto;
 }
+
+.post__buttons {
+  display: flex;
+}
