@@ -42,7 +42,7 @@ const PostIdPage = () => {
           {comments.map((comment) => {
             return (
               <div key={comment.id} style={{ margin: "15px 0" }}>
-                <div>{comment.email}</div>
+                <h5>{comment.email}</h5>
                 <div>{comment.name}</div>
                 <div>{comment.body}</div>
               </div>
