@@ -1,5 +1,5 @@
 # React-found-course 
-This is a react app posts wich I created by tutorial from Ulbi TV
+This is a react app wich I created by tutorial from Ulbi TV
 [https://www.youtube.com/watch?v=GNrdg3PzpJQ](https://www.youtube.com/watch?v=GNrdg3PzpJQ)
 
 The posts and comments have been read from **JSONPlaceholder**
