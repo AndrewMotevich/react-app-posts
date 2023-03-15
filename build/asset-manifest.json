@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-found-course/static/css/main.b48aea1a.css",
+    "main.js": "/react-found-course/static/js/main.6713fcd4.js",
+    "index.html": "/react-found-course/index.html",
+    "main.b48aea1a.css.map": "/react-found-course/static/css/main.b48aea1a.css.map",
+    "main.6713fcd4.js.map": "/react-found-course/static/js/main.6713fcd4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b48aea1a.css",
+    "static/js/main.6713fcd4.js"
+  ]
+}
